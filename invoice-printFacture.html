@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Facture</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="files/bower_components/bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="files/bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="files/bower_components/Ionicons/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="files/assets/css/AdminLTE.css">
+
+
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+
+<body onload="window.print();">
+<!-- <body > -->
+  <script>
+    console.log(window.facture.fourniseur.adresse);
+  </script>
+<div class="wrapper">
+  <!-- Main content -->
+  <section class="invoice">
+    <!-- title row -->
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="page-header">
+          <image class="profile-img" src="uploadImage/Logo/favicon.jpg" style="width:150px;height:150px;"></image>
+          <small class="pull-right" style="position: absolute;
+          top: 21px;
+          right: 44px;">Date: <script>
+             x=new Date(window.facture.dateFacture).toLocaleDateString('fr-FR');
+		     document.write(x);
+            </script></small>
+        </h2>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- info row -->
+    <div class="container">
+    <div class="row invoice-info">
+      <div class="col-sm-4 invoice-col">
+        From
+        <address>
+          <strong>PARACOSMETIQUE</strong><br>
+          
+          MT: 1751061/Z<br>
+          9 Hay Ben Younes,<br>
+          El_AGBA, Tunis<br>
+          Téléphone: (+216) 98-511-153<br>
+          Email: paracosmetique@gmail.com
+        </address>
+      </div>
+      <!-- /.col -->
+      <div class="col-sm-4 invoice-col">
+        To
+        <address>
+          <strong>
+            <script>
+              document.write(window.facture.fourniseur.nom);
+            </script></strong><br>
+          Adresse:  <script>
+              document.write(window.facture.fourniseur.adresse);
+            </script><br>
+          Téléphone:   <script>
+              document.write(window.facture.fourniseur.tel);
+            </script><br>
+          Matricule: <script>
+              document.write(window.facture.fourniseur.ref_fourniseur);
+            </script>
+        </address>
+      </div>
+      <!-- /.col -->
+      <div class="col-sm-4 invoice-col">
+        <b>Commande N° <script>
+            document.write(window.facture.idFacture);
+          </script></b><br>
+        <br>
+        <b>Date:</b> <script>
+             x=new Date(window.facture.dateFacture).toLocaleDateString('fr-FR');
+		document.write(x);
+          </script><br>
+        
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+
+    <!-- Table row -->
+    <div class="row">
+      <div class="col-xs-12 table-responsive">
+        <table class="table table-striped" style=" border: medium solid #6495ed;
+        border-collapse: collapse;
+        width: 100%;">
+          <thead>
+          <tr>
+            
+            <th style="   font-family: monospace;
+            border: thin solid #6495ed;
+            width: 100%;
+            padding: 5px;
+            background-color: #D0E3FA;
+        ">CODE</th>
+            <th style="   font-family: monospace;
+            border: thin solid #6495ed;
+            width: 100%;
+            padding: 5px;
+            background-color: #D0E3FA;
+        ">Desiginiation</th>
+            <th style="  font-family: monospace;
+            border: thin solid #6495ed;
+            width: 100%;
+            padding: 5px;
+            background-color: #D0E3FA;
+        ">QTE</th>
+.            <th style="  font-family: monospace;
+            border: thin solid #6495ed;
+            width: 100%;
+            padding: 5px;
+            background-color: #D0E3FA;
+        ">P.U.V.HT</th>
+            <th style="  font-family: monospace;
+            border: thin solid #6495ed;
+            width: 100%;
+            padding: 5px;
+            background-color: #D0E3FA;
+        ">REMISE</th>
+            <th style="  font-family: monospace;
+            border: thin solid #6495ed;
+            width: 100%;
+            padding: 5px;
+            background-color: #D0E3FA;
+        ">P.U.V.TTC</th>
+            <th style="  font-family: monospace;
+            border: thin solid #6495ed;
+            width: 100%;
+            padding: 5px;
+            background-color: #D0E3FA;
+        ">Montant HT</th>
+            <th style="  font-family: monospace;
+            border: thin solid #6495ed;
+            width: 100%;
+            padding: 5px;
+            background-color: #D0E3FA;
+        ">TVA</th>
+          </tr>
+
+          </thead>
+          
+          <tbody>
+            <script>
+              window.facture.achat_products.forEach(element => {
+                document.write(`
+                <tr>
+                  <td style=" font-family: sans-serif;
+    border: thin solid #6495ed;
+    width: 50%;
+    padding: 5px;
+    text-align: center;
+    background-color: #ffffff;">${element.code}</td>
+                  <td style="font-family: sans-serif;
+    border: thin solid #6495ed;
+    width: 50%;
+    padding: 5px;
+    text-align: center;
+    background-color: #ffffff;">${element.designiation}</td>
+                  <td style="font-family: sans-serif;
+    border: thin solid #6495ed;
+    width: 50%;
+    padding: 5px;
+    text-align: center;
+    background-color: #ffffff;">${element.qtecmd}</td>
+                  <td style="font-family: sans-serif;
+    border: thin solid #6495ed;
+    width: 50%;
+    padding: 5px;
+    text-align: center;
+    background-color: #ffffff;">${Number(element.Montant_venteHT).toFixed(3)}</td>
+                  <td style="font-family: sans-serif;
+    border: thin solid #6495ed;
+    width: 50%;
+    padding: 5px;j
+    text-align: center;
+    background-color: #ffffff;">${element.remise}%</td>
+                  <td style="font-family: sans-serif;
+    border: thin solid #6495ed;
+    width: 50%;
+    padding: 5px;
+    text-align: center;
+    background-color: #ffffff;">${Number(element.Montant_venteTTC).toFixed(3)}</td>
+                  <td style="font-family: sans-serif;
+    border: thin solid #6495ed;
+    width: 50%;
+    padding: 5px;
+    text-align: center;
+    background-color: #ffffff;">${Number(element.Montant_venteHT).toFixed(3) * element.qtecmd}</td>
+                  <td style="font-family: sans-serif;
+    border: thin solid #6495ed;
+    width: 50%;
+    padding: 5px;
+    text-align: center;
+    background-color: #ffffff;">${element.TVA}%</td>
+                </tr>
+                `);
+              });
+              
+            </script>
+          </tbody>
+        </table>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+      <!-- /.col -->
+      <div class="col-xs-6">
+      </div>
+      <div class="col-xs-6">
+        <div class="table-responsive">
+            
+            
+          <table class="table" style="  border: medium solid #6495ed;
+          border-collapse: collapse;
+          width: 100%;">
+           <script>   
+			let totalBrut = 0;
+			let totalremise =0;
+			let totaltva=0;
+			window.facture.achat_products.forEach(element => {
+			
+			const brut = element.Montant_venteHT * element.qtecmd;
+			totalBrut +=brut;
+			totalremise += brut*element.remise/100;
+		
+			totaltva += (brut-(brut*element.remise/100))*(element.TVA/100);
+			net = totalBrut+totaltva-totalremise;
+			});
+                document.write(`
+            <tr>
+              <th style="width:50%;font-family: monospace;
+              border: thin solid #6495ed;
+              width: 100%;
+              padding: 5px;
+              background-color: #D0E3FA;">Total Brut:</th>
+              <td style="  font-family: sans-serif;
+              border: thin solid #6495ed;
+              width: 50%;
+              padding: 5px;
+              text-align: center;
+              background-color: #ffffff;">${totalBrut.toFixed(3)}</td></tr>
+			    <tr>
+			  
+              <th style="width:50%;font-family: monospace;
+              border: thin solid #6495ed;
+              width: 100%;
+              padding: 5px;
+              background-color: #D0E3FA;">Total Remise:</th>
+              <td style="  font-family: sans-serif;
+              border: thin solid #6495ed;
+              width: 50%;
+              padding: 5px;
+              text-align: center;
+              background-color: #ffffff;">${totalremise.toFixed(3)} </td></tr>
+			  <tr>
+			  
+              <th style="width:50%;font-family: monospace;
+              border: thin solid #6495ed;
+              width: 100%;
+              padding: 5px;
+              background-color: #D0E3FA;">Total TVA:</th>
+              <td style="  font-family: sans-serif;
+              border: thin solid #6495ed;
+              width: 50%;
+              padding: 5px;
+              text-align: center;
+              background-color: #ffffff;">${totaltva.toFixed(3)} </td></tr>
+			  <tr>
+			  
+              <th style="width:50%;font-family: monospace;
+              border: thin solid #6495ed;
+              width: 100%;
+              padding: 5px;
+              background-color: #D0E3FA;">Net A payer:</th>
+              <td style="  font-family: sans-serif;
+              border: thin solid #6495ed;
+              width: 50%;
+              padding: 5px;
+              text-align: center;
+              background-color: #ffffff;">${net.toFixed(3)} </td></tr>
+			  `);
+             
+			  </script>
+          </table>
+          
+        </div>
+      </div>
+      </div>
+      <!-- /.col -->
+          <div class="row">
+      <!-- /.col -->
+      <div class="col-xs-6">
+      </div>
+      <div class="col-xs-6">
+        <div class="table-responsive">
+            
+            
+          <table class="table" style="  border: medium solid #6495ed;
+          border-collapse: collapse;
+          width: 100%;">
+                    <tr>
+              <th style="width:50%;font-family: monospace;
+              border: thin solid #6495ed;
+              width: 100%;
+              padding: 5px;
+              background-color: #D0E3FA;">Cachet et signiature :</th>
+              <td style="font-family: sans-serif;
+              border: thin solid #6495ed;
+              width: 100%;
+              padding: 5px;
+              text-align: center;
+              background-color: #ffffff;">.......................................................................................................................</td>
+            </tr>
+        
+          </table>
+          
+        </div>
+      </div>
+      </div>
+      <!-- /.col -->
+    <!-- /.row -->
+    </div>
+  </section>
+  <!-- /.content -->
+</div>
+<!-- ./wrapper -->
+</body>
+</html>

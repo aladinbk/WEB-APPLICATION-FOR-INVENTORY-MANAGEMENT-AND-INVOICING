@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Bon de livraison</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="files/bower_components/bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="files/bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="files/bower_components/Ionicons/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="files/assets/css/AdminLTE.css">
+
+
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+
+<body onload="window.print();">
+<!-- <body > -->
+  <script>
+    console.log(window.facture.client.adresse);
+  </script>
+<div class="wrapper">
+  <!-- Main content -->
+  <section class="invoice">
+    <!-- title row -->
+    <div class="row" style=" height: 100px;
+         width: 100px; padding:5px; font-size:1em;">
+      <div class="col-xs-16">
+        <h2 class="page-header">
+          <image class="profile-img" src="uploadImage/Logo/favicon.jpg" style="width:100px;height:100px;"></image>
+          <small class="pull-right" style="position: absolute;
+          top: 21px;
+          right: 44px;"> <script>
+          x= window.facture.dateFacture.split('/');
+			
+			 
+            </script></small>
+        </h2>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- info row -->
+    <div class="container">
+    <div class="row invoice-info" style="font-size:1em;">
+      <div class="col-sm-4 invoice-col">
+        A partir de :
+        <address>
+          <strong>Para cosmétique</strong><br>
+          
+          MT: 1751061/Z/M/A/000<br>
+          55 Avenue Habib bougatfa, Tunis<br>
+          Tunis, Tunisie<br>
+          Téléphone:(+216)21212121<br>
+		  Téléphone:(+216)21212121<br>
+          E-mail: paracosmetique@gmail.com
+        </address>
+      </div>
+      <!-- /.col -->
+	  
+      <div class="col-sm-4 invoice-col">
+	  
+        A :
+        <address>
+          <strong>
+            <script>
+              document.write(window.facture.client.nom);
+            </script></strong><br>
+            <script>
+              document.write(window.facture.client.adresse);
+            </script><br>
+          <script>
+              document.write(window.facture.client.ville);
+            </script><br>
+          Téléphone:(+216) <script>
+              document.write(window.facture.client.phone);
+            </script><br>
+		
+          Téléphone:(+216) <script>
+              document.write(window.facture.client.phone);
+            </script><br>
+          Email: <script>
+              document.write(window.facture.client.email);
+            </script>
+        </address>
+      </div>
+      <!-- /.col -->
+      <div class="col-sm-4 invoice-col">
+        <b>Bon de Livraison N°: <script>
+            document.write(window.facture.idFacture);
+          </script></b><br>
+     
+        <b>Date:</b> <script>
+           x=new Date(window.facture.dateFacture).toLocaleDateString('fr-FR');
+		document.write(x);
+          </script><br>
+        
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+
+    <!-- Table row -->
+    <div class="row">
+      <div class="col-xs-12 table-responsive">
+        <table class="table table-striped" style=" border: medium solid #000000;
+        border-collapse: collapse;
+        width: 100%;">
+          <thead>
+          <tr>
+            
+            <th style="   font-family: monospace;
+            border: thin solid;
+            width: 20%;
+            padding: 5px;
+          
+        ">CODE</th>
+            <th style="font-family: monospace;
+            border: thin solid;
+            width: 50%;
+            padding: 5px;
+           
+        ">Désiginiation</th>
+            <th style="  font-family: monospace;
+            border: thin solid;
+            width: 100%;
+            padding: 5px;
+            
+        ">QTE</th>
+            <th style="  font-family: monospace;
+            border: thin solid;
+            width: 100%;
+            padding: 5px;
+       
+        ">P.U.V.HT</th>
+            <th style="  font-family: monospace;
+            border: thin solid;
+            width: 100%;
+            padding: 5px;
+            
+        ">REMISE</th>
+           
+            <th style="  font-family: monospace;
+            border: thin solid;
+            width: 100%;
+            padding: 5px;
+            
+        ">Montant HT</th>
+            <th style="  font-family: monospace;
+            border: thin solid;
+            width: 100%;
+            padding: 5px;
+            
+        ">TVA</th>
+		<th style="  font-family: monospace;
+            border: thin solid;
+            width: 100%;
+            padding: 5px;
+            
+        ">Total</th>
+          </tr>
+
+          </thead>
+          
+          <tbody>
+            <script>
+              window.facture.sales_product.forEach(element => {
+			  totPBrut = element.Montant_venteHT * element.qtecmd;
+                document.write(`
+                <tr>
+                  <td style=" font-family: sans-serif;
+    border: thin solid;
+    width: 50%;
+    padding: 5px;
+    text-align: center;">${element.code}</td>
+                  <td style="font-family: sans-serif;
+    border: thin solid;
+    width: 50%;
+    padding: 5px;
+    text-align: center;
+    ">${element.designiation}</td>
+                  <td style="font-family: sans-serif;
+    border: thin solid;
+    width: 50%;
+    padding: 5px;
+    text-align: center;
+    ">${element.qtecmd}</td>
+                  <td style="font-family: sans-serif;
+    border: thin solid;
+    width: 50%;
+    padding: 5px;
+    text-align: center;              
+    ">${Number(element.Montant_venteHT).toFixed(3)}</td>
+                  <td style="font-family: sans-serif;
+    border: thin solid;
+    width: 50%;
+    padding: 5px;j
+    text-align: center;
+    ">${element.remise}%</td>
+               
+                  <td style="font-family: sans-serif;
+    border: thin solid;
+    width: 50%;
+    padding: 5px;
+    text-align: center;
+    ">${Number(element.Montant_venteHT * element.qtecmd - element.Montant_venteHT * element.qtecmd * element.remise / 100 ).toFixed(3)}</td>
+	
+                  <td style="font-family: sans-serif;
+    border: thin solid;
+    width: 50%;
+    padding: 5px;
+    text-align: center;
+    ">${element.TVA}%</td>
+	
+		
+	<td style="font-family: sans-serif;
+    border: thin solid;
+    width: 50%;
+    padding: 5px;
+    text-align: center;
+    ">${Number((totPBrut- totPBrut * element.remise/100)+ (totPBrut- totPBrut * element.remise/100)*element.TVA/100).toFixed(3)}</td>
+                </tr>
+                `);
+              });
+              
+            </script>
+          </tbody>
+        </table>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+      <!-- /.col -->
+      <div class="col-xs-6">
+      </div>
+      <div class="col-xs-6">
+        <div class="table-responsive">
+            
+            
+          <table class="table" style="  border: medium solid;
+          border-collapse: collapse;
+          width: 100%;">
+		  
+            <script>   
+			let totalBrut = 0;
+			let totalremise =0;
+			let totaltva=0;
+			window.facture.sales_product.forEach(element => {
+			
+			const brut = Number((element.Montant_venteHT * element.qtecmd - element.Montant_venteHT * element.qtecmd * element.remise/100));
+			totalBrut +=brut;
+			totalremise += element.Montant_venteHT * element.qtecmd*element.remise/100;
+		
+			totaltva += (brut-(brut*element.remise/100))*(element.TVA/100);
+			net = totalBrut+totaltva;
+			});
+                document.write(`
+            <tr>
+              <th style="width:50%;font-family: monospace;
+              border: thin solid;
+              width: 100%;
+              padding: 5px;
+              ">Total Brut:</th>
+              <td style="  font-family: sans-serif;
+              border: thin solid;
+              width: 50%;
+              padding: 5px;
+              text-align: center;
+              ">${ Number(totalBrut).toFixed(3)}</td></tr>
+			    <tr>
+			  
+              <th style="width:50%;font-family: monospace;
+              border: thin solid;
+              width: 100%;
+              padding: 5px;
+              ">Total Remise:</th>
+              <td style="  font-family: sans-serif;
+              border: thin solid;
+              width: 50%;
+              padding: 5px;
+              text-align: center;
+              ">${ Number(totalremise).toFixed(3)} </td></tr>
+			  <tr>
+			  
+              <th style="width:50%;font-family: monospace;
+              border: thin solid;
+              width: 100%;
+              padding: 5px;
+              ">Total TVA:</th>
+              <td style="  font-family: sans-serif;
+              border: thin solid;
+              width: 50%;
+              padding: 5px;
+              text-align: center;
+             ">${ Number(totaltva).toFixed(3)} </td></tr>
+			  <tr>
+			  
+              <th style="width:50%;font-family: monospace;
+              border: thin solid;
+              width: 100%;
+              padding: 5px;
+             ">Net A payer:</th>
+              <td style="  font-family: sans-serif;
+              border: thin solid;
+              width: 50%;
+              padding: 5px;
+              text-align: center;
+           ">${Number(net).toFixed(3)} </td></tr>
+			  `);
+             
+			  </script>
+          </table>
+          
+        </div>
+      </div>
+      </div>
+      <!-- /.col -->
+          <div class="row">
+      <!-- /.col -->
+      <div class="col-xs-6">
+      </div>
+      <div class="col-xs-6">
+        <div class="table-responsive">
+            
+            
+          <table class="table" style="  border: medium solid;
+          border-collapse: collapse;
+          width: 100%; height:300%;">
+                    <tr style="height:100%;">
+              <th style="width:50%;font-family: monospace;
+              border: thin solid;
+              width: 100%;
+              padding: 5px;
+              ">Cachet et signiature:</th>
+              <td style="font-family: sans-serif;
+              border: thin solid;
+              width: 50%;
+              padding: 5px;
+              text-align: center;
+              background-color: #ffffff;" ><div style="width:100%; color:white !important;"></br></br></br></br>........................................................................................................................</div></td>
+            </tr>
+        
+          </table>
+          
+        </div>
+      </div>
+      </div>
+      <!-- /.col -->
+    <!-- /.row -->
+    </div>
+  </section>
+  <!-- /.content -->
+</div>
+<!-- ./wrapper -->
+</body>
+</html>
